@@ -267,6 +267,10 @@ textarea{min-height:70px;resize:vertical}
     <button onclick="askNoti()">開啟</button>
   </div>
   <div class="setrow">
+    <div><b>雲端同步</b><small id="syncTxt">尚未設定</small></div>
+    <button onclick="openSync()">設定</button>
+  </div>
+  <div class="setrow">
     <div><b>提醒加到哪裡</b><small id="calModeTxt">目前：手機行事曆</small></div>
     <button onclick="toggleCal()">切換</button>
   </div>
@@ -325,6 +329,22 @@ textarea{min-height:70px;resize:vertical}
   <button class="save" onclick="saveLed()">記下來</button>
 </div>
 
+<!-- 雲端同步 -->
+<div class="sheet" id="sheetSync">
+  <div class="grab"></div>
+  <div class="s-title"><span>雲端同步</span>
+    <button class="s-close" onclick="closeSheets()" aria-label="關閉">✕</button></div>
+  <label>Google 網頁應用程式網址</label>
+  <input id="s-url" placeholder="https://script.google.com/macros/s/..." autocomplete="off">
+  <div class="togs" style="margin-top:14px">
+    <button onclick="pushNow()">立即上傳</button>
+    <button onclick="pullNow()">從雲端取回</button>
+  </div>
+  <div style="color:var(--muted);font-size:13px;margin-top:14px;line-height:1.6" id="syncInfo"></div>
+  <button class="save" onclick="saveSync()">存網址</button>
+  <button class="del" onclick="clearSync()">停用同步</button>
+</div>
+
 <!-- 跳表試算 -->
 <div class="sheet" id="sheetFare">
   <div class="grab"></div>
@@ -379,6 +399,7 @@ function load(){
 function save(a){
   mem=a;
   try{ localStorage.setItem(KEY,JSON.stringify(a)); }catch(e){ memOnly=true; }
+  if(typeof markDirty==='function') markDirty();
 }
 
 var LKEY='taxi_ledger_v1', lmem=[];
@@ -390,6 +411,7 @@ function loadL(){
 function saveL(a){
   lmem=a;
   try{ localStorage.setItem(LKEY,JSON.stringify(a)); }catch(e){ memOnly=true; }
+  if(typeof markDirty==='function') markDirty();
 }
 
 /* ───────── 工具 ───────── */
@@ -545,6 +567,74 @@ function renderMoney(){
     +'<div class="daygroup">今天明細</div>'
     +(rows||'<div class="empty">今天還沒有紀錄</div>');
 }
+
+/* ───────── 雲端同步 ───────── */
+var dirty=false, syncing=false;
+function syncUrl(){try{return localStorage.getItem('sync_url')||''}catch(e){return ''}}
+function lastSync(){try{return localStorage.getItem('sync_at')||''}catch(e){return ''}}
+function markDirty(){ if(syncUrl()){ dirty=true; clearTimeout(window._sy);
+  window._sy=setTimeout(function(){push(true)},1500); } }
+
+function push(quiet){
+  var u=syncUrl(); if(!u||syncing) return;
+  syncing=true;
+  fetch(u,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify({bookings:load(),ledger:loadL()})})
+  .then(function(r){return r.json()})
+  .then(function(d){
+    syncing=false;
+    if(d&&d.ok){ dirty=false;
+      try{localStorage.setItem('sync_at',toLocal(new Date()))}catch(e){}
+      if(!quiet) toast('已上傳到雲端');
+      showSync();
+    } else if(!quiet) toast('上傳失敗，請檢查網址');
+  })
+  .catch(function(){ syncing=false; if(!quiet) toast('連不上雲端，等有網路會自動重試'); });
+}
+function pull(auto){
+  var u=syncUrl(); if(!u) return;
+  fetch(u).then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok){ if(!auto) toast('取回失敗'); return; }
+    var bk=d.bookings||[], lg=d.ledger||[];
+    if(!auto && !confirm('取回雲端資料會覆蓋這台手機目前的內容，確定？')) return;
+    bk.forEach(function(b){ b.notified=b.notified||{} });
+    save(bk); saveL(lg);
+    try{localStorage.setItem('sync_at',toLocal(new Date()))}catch(e){}
+    render(); showSync();
+    toast('已取回 '+(bk.length+lg.length)+' 筆');
+  }).catch(function(){ if(!auto) toast('連不上雲端'); });
+}
+function pushNow(){ if(!syncUrl()){toast('請先存網址');return;} toast('上傳中…'); push(false); }
+function pullNow(){ if(!syncUrl()){toast('請先存網址');return;} pull(false); }
+function openSync(){
+  val('s-url',syncUrl());
+  document.getElementById('syncInfo').innerHTML=
+    syncUrl()? ('上次同步：'+(lastSync()||'尚未同步')) :
+    '設定後，每次新增或修改都會自動存到你的 Google 試算表。';
+  show(document.getElementById('sheetSync'));
+}
+function saveSync(){
+  var u=g('s-url').trim();
+  if(u && u.indexOf('https://script.google.com/')!==0){ toast('網址看起來不對'); return; }
+  try{localStorage.setItem('sync_url',u)}catch(e){}
+  closeSheets(); showSync();
+  if(u){ toast('已啟用，正在上傳…'); push(false); } else toast('已停用同步');
+}
+function clearSync(){
+  if(!confirm('停用雲端同步？手機上的資料不會被刪除。'))return;
+  try{localStorage.removeItem('sync_url')}catch(e){}
+  closeSheets(); showSync(); toast('已停用同步');
+}
+function showSync(){
+  var el=document.getElementById('syncTxt'); if(!el)return;
+  el.textContent = syncUrl() ? ('上次同步：'+(lastSync()||'尚未同步')) : '尚未設定';
+}
+function syncBoot(){
+  if(!syncUrl()) return;
+  if(!load().length && !loadL().length) pull(true);   // 這台手機是空的 → 自動取回
+  else if(dirty) push(true);
+}
+setInterval(function(){ if(dirty) push(true); },60000);
 
 /* ───────── 跳表試算 ───────── */
 var DEF={basekm:1.25,base:85,unitm:200,unitfee:5,waits:100,waitfee:5,night:20,extra:50};
@@ -808,7 +898,17 @@ function dl(blob,name){
 function backup(){
   dl(new Blob([JSON.stringify({bookings:load(),ledger:loadL()})],{type:'application/json'}),
      '備份_'+todayKey()+'.json');
-  toast('備份已下載');
+  try{localStorage.setItem('last_backup',todayKey())}catch(e){}
+  toast('備份已下載，記得存到雲端硬碟');
+}
+function backupCheck(){
+  var last;
+  try{ last=localStorage.getItem('last_backup'); }catch(e){ return; }
+  if(!load().length && !loadL().length) return;
+  var days = last ? Math.round((new Date()-parseT(last+'T00:00'))/864e5) : 99;
+  if(days>=7){
+    toast(last?('已經 '+days+' 天沒備份了'):'還沒備份過資料','立即備份',backup);
+  }
 }
 function restore(e){
   var f=e.target.files[0]; if(!f)return;
@@ -868,6 +968,7 @@ function closeSheets(){
   document.querySelectorAll('.sheet').forEach(function(s){s.classList.remove('on')});
 }
 function openSettings(){
+  showSync();
   var r=rate();
   document.getElementById('rateTxt').textContent=
     '起程 '+r.basekm+'km '+r.base+'元，續程每 '+r.unitm+'m '+r.unitfee+'元';
@@ -891,6 +992,8 @@ document.querySelectorAll('.tab').forEach(function(t){
   };
 });
 render();
+syncBoot();
+setTimeout(function(){ if(!syncUrl()) backupCheck(); },1200);
 </script>
 </body>
 </html>
