@@ -195,6 +195,7 @@ textarea{min-height:70px;resize:vertical}
   padding:14px 16px;z-index:60;display:none;align-items:center;gap:12px;
   box-shadow:0 8px 24px rgba(0,0,0,.5)}
 .toast.on{display:flex}
+.toast.top{top:calc(16px + env(safe-area-inset-top));bottom:auto}
 .toast span{flex:1;font-size:15px}
 .toast button{background:var(--amber);color:#17140E;padding:9px 14px;
   border-radius:11px;font-weight:700;font-size:14px;flex:none}
@@ -978,6 +979,7 @@ function openSettings(){
 var tTimer;
 function toast(msg,btn,fn){
   var t=document.getElementById('toast'), b=document.getElementById('toastBtn');
+  t.classList.toggle('top', !!document.querySelector('.sheet.on'));
   document.getElementById('toastMsg').textContent=msg;
   if(btn){b.style.display='';b.textContent=btn;b.onclick=function(){fn();hideToast()}}
   else b.style.display='none';
