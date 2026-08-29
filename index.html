@@ -579,18 +579,24 @@ function markDirty(){ if(syncUrl()){ dirty=true; clearTimeout(window._sy);
 function push(quiet){
   var u=syncUrl(); if(!u||syncing) return;
   syncing=true;
-  fetch(u,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
+  var want=load().length+loadL().length;
+  // Apps Script 會把一般 POST 轉向而弄丟資料，改用 no-cors 直送，再用 GET 回頭驗證
+  fetch(u,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
     body:JSON.stringify({bookings:load(),ledger:loadL()})})
-  .then(function(r){return r.json()})
+  .then(function(){ return new Promise(function(r){ setTimeout(r,1800) }) })
+  .then(function(){ return fetch(u+'?v='+Date.now()) })
+  .then(function(r){ return r.json() })
   .then(function(d){
     syncing=false;
-    if(d&&d.ok){ dirty=false;
+    var got=((d&&d.bookings)||[]).length+((d&&d.ledger)||[]).length;
+    if(d&&d.ok&&got===want){
+      dirty=false;
       try{localStorage.setItem('sync_at',toLocal(new Date()))}catch(e){}
-      if(!quiet) toast('已上傳到雲端');
+      if(!quiet) toast('已上傳到雲端（'+got+' 筆）');
       showSync();
-    } else if(!quiet) toast('上傳失敗，請檢查網址');
+    } else if(!quiet) toast('雲端沒收到，請檢查部署權限是否為「所有人」');
   })
-  .catch(function(){ syncing=false; if(!quiet) toast('連不上雲端，等有網路會自動重試'); });
+  .catch(function(){ syncing=false; if(!quiet) toast('連不上雲端，有網路時會自動重試'); });
 }
 function pull(auto){
   var u=syncUrl(); if(!u) return;
