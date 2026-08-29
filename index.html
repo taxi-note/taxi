@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<meta name="theme-color" content="#12100B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="跑一單🚗">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<title>跑一單🚗</title>
+<style>
+:root{
+  --bg:#12100B; --surface:#1D1A13; --surface2:#272319; --line:#3A3223;
+  --amber:#FFC24D; --amber-soft:#5A4517; --cream:#F6F0E2; --muted:#9A8F79;
+  --red:#FF6F5E; --green:#7BD389;
+  --meter:ui-monospace,"SF Mono",Menlo,"Roboto Mono",monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--cream);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  font-size:17px; line-height:1.5;
+  padding-bottom:calc(150px + env(safe-area-inset-bottom));
+  -webkit-text-size-adjust:100%;
+}
+button,input,textarea,select{font:inherit;color:inherit}
+button{border:0;background:none;cursor:pointer}
+
+/* ── header ── */
+header{
+  position:sticky; top:0; z-index:20; background:rgba(18,16,11,.94);
+  backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
+  padding:calc(14px + env(safe-area-inset-top)) 18px 12px;
+  display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+}
+.h-date{font-size:22px; font-weight:800; letter-spacing:.5px}
+.h-sub{font-size:13px; color:var(--muted); margin-top:2px}
+.h-sub b{color:var(--amber)}
+.icon-btn{width:42px;height:42px;border-radius:12px;background:var(--surface2);
+  display:grid;place-items:center;font-size:19px;flex:none}
+
+/* ── next trip (signature meter) ── */
+.meter{margin:16px 14px 0; border-radius:20px; overflow:hidden;
+  background:linear-gradient(160deg,#221E15,#1A1710); border:1px solid var(--line)}
+.meter-top{display:flex;align-items:center;gap:8px;padding:14px 18px 0;
+  font-size:12px;letter-spacing:3px;color:var(--amber);font-weight:700}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--amber);flex:none}
+.meter.soon .dot{background:var(--red);animation:blink 1.1s infinite}
+.meter.soon .meter-top{color:var(--red)}
+@keyframes blink{50%{opacity:.15}}
+.meter-count{font-family:var(--meter); font-size:52px; font-weight:700;
+  letter-spacing:-1px; font-variant-numeric:tabular-nums;
+  padding:2px 18px 0; color:var(--amber); line-height:1.15}
+.meter.soon .meter-count{color:var(--red)}
+.meter-route{padding:6px 18px 0; font-size:20px; font-weight:700}
+.meter-when{padding:4px 18px 16px; color:var(--muted); font-size:14px}
+.meter-acts{display:flex; border-top:1px solid var(--line)}
+.meter-acts button{flex:1; padding:15px 4px; font-size:15px; font-weight:600;
+  border-right:1px solid var(--line)}
+.meter-acts button:last-child{border-right:0}
+.empty-meter{margin:16px 14px 0;padding:28px 20px;border-radius:20px;
+  background:var(--surface);border:1px dashed var(--line);text-align:center;color:var(--muted)}
+
+/* ── tabs ── */
+.tabs{display:flex; gap:8px; padding:22px 14px 10px; overflow-x:auto}
+.tab{padding:9px 16px;border-radius:999px;background:var(--surface2);
+  color:var(--muted);font-size:15px;font-weight:600;white-space:nowrap}
+.tab.on{background:var(--amber);color:#17140E}
+
+/* ── cards ── */
+.list{padding:0 14px}
+.daygroup{font-size:13px;color:var(--muted);font-weight:700;letter-spacing:2px;
+  padding:16px 4px 8px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:18px;
+  padding:14px 16px; margin-bottom:12px}
+.card.late{border-color:#6d2f27; background:#221410}
+.card.done{opacity:.5}
+.c-row1{display:flex;align-items:baseline;gap:10px}
+.c-time{font-family:var(--meter);font-size:26px;font-weight:700;
+  font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.c-left{font-size:13px;color:var(--amber);font-weight:600}
+.card.late .c-left{color:var(--red)}
+.c-tag{margin-left:auto;font-size:12px;color:var(--muted);border:1px solid var(--line);
+  padding:3px 9px;border-radius:999px}
+.c-route{font-size:17px;font-weight:700;margin-top:6px;line-height:1.45}
+.c-route .arw{color:var(--muted);font-weight:400;margin:0 6px}
+.c-meta{font-size:14px;color:var(--muted);margin-top:4px}
+.c-meta .fare{color:var(--cream);font-family:var(--meter);font-weight:700}
+.c-note{font-size:14px;color:var(--cream);background:var(--surface2);
+  border-radius:10px;padding:8px 11px;margin-top:9px}
+.c-acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.chip{padding:9px 13px;border-radius:11px;background:var(--surface2);
+  font-size:14px;font-weight:600}
+.chip.pri{background:var(--amber);color:#17140E}
+.chip.ok{background:#1F3527;color:var(--green)}
+.chip.mut{color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:50px 20px;font-size:15px}
+
+/* ── 記帳 ── */
+.money-hero{background:linear-gradient(160deg,#221E15,#1A1710);border:1px solid var(--line);
+  border-radius:20px;padding:18px 18px 20px;margin-bottom:14px}
+.mh-label{font-size:12px;letter-spacing:3px;color:var(--amber);font-weight:700}
+.mh-net{font-family:var(--meter);font-size:46px;font-weight:700;letter-spacing:-1px;
+  font-variant-numeric:tabular-nums;line-height:1.2;margin-top:4px}
+.mh-split{display:flex;gap:20px;margin-top:8px;font-size:14px;color:var(--muted)}
+.mh-split b{font-family:var(--meter);color:var(--cream);font-weight:700}
+.mh-split .out b{color:var(--red)}
+.bars{display:flex;align-items:flex-end;gap:7px;height:92px;margin-top:18px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bar i{display:block;background:var(--amber-soft);border-radius:5px 5px 0 0;min-height:3px}
+.bar.now i{background:var(--amber)}
+.bar span{display:block;text-align:center;font-size:11px;color:var(--muted);margin-top:6px}
+.mcards{display:flex;gap:10px;margin-bottom:14px}
+.mcard{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:13px 14px}
+.mcard small{display:block;font-size:12px;color:var(--muted);letter-spacing:1px}
+.mcard b{font-family:var(--meter);font-size:23px;font-weight:700;font-variant-numeric:tabular-nums}
+.mbtns{display:flex;gap:10px;margin-bottom:6px}
+.mbtns button{flex:1;padding:15px 6px;border-radius:15px;font-size:15px;font-weight:800}
+.mbtns .meterbtn{background:var(--surface2);color:var(--amber);border:1px solid var(--amber-soft)}
+.fare-out{background:linear-gradient(160deg,#221E15,#1A1710);border:1px solid var(--amber-soft);
+  border-radius:18px;padding:16px 18px;margin-top:18px;text-align:center}
+.fare-out .n{font-family:var(--meter);font-size:44px;font-weight:700;color:var(--amber);
+  font-variant-numeric:tabular-nums;line-height:1.2}
+.fare-out .d{font-size:13px;color:var(--muted);margin-top:6px}
+.togs{display:flex;gap:8px;margin-top:10px}
+.togs button{flex:1;padding:12px 6px;border-radius:12px;background:var(--surface2);
+  font-size:14px;font-weight:600;border:1px solid var(--line);color:var(--muted)}
+.togs button.on{background:var(--amber);color:#17140E;border-color:var(--amber)}
+.rate-grid{display:flex;gap:10px}.rate-grid>div{flex:1}
+.mbtns .in{background:var(--amber);color:#17140E;flex:1.5;font-size:17px}
+.mbtns .out{background:var(--surface2);color:var(--red);border:1px solid #4a2a24}
+.led{display:flex;align-items:center;gap:12px;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:9px}
+.led .t{font-family:var(--meter);font-size:14px;color:var(--muted);flex:none}
+.led .c{flex:1;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.led .c em{font-style:normal;color:var(--muted);font-size:13px}
+.led .a{font-family:var(--meter);font-size:19px;font-weight:700;flex:none}
+.led .a.in{color:var(--amber)}
+.led .a.out{color:var(--red)}
+.led .x{color:var(--muted);font-size:16px;padding:2px 4px;flex:none}
+.amt{font-family:var(--meter);font-size:34px!important;font-weight:700;text-align:center;
+  letter-spacing:1px}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.cats button{padding:11px 16px;border-radius:12px;background:var(--surface2);
+  font-size:15px;font-weight:600;border:1px solid var(--line)}
+.cats button.on{background:var(--amber);color:#17140E;border-color:var(--amber)}
+
+/* ── FAB ── */
+.fab{position:fixed;right:18px;bottom:calc(76px + env(safe-area-inset-bottom));
+  height:58px;padding:0 24px;border-radius:29px;background:var(--amber);color:#17140E;
+  font-size:18px;font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,.5);z-index:30;
+  display:flex;align-items:center;gap:8px}
+
+/* ── sheet ── */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:40;display:none}
+.scrim.on{display:block}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--surface);
+  border-radius:24px 24px 0 0;border-top:1px solid var(--line);
+  transform:translateY(100%);transition:transform .26s cubic-bezier(.3,.9,.3,1);
+  max-height:92vh;overflow-y:auto;
+  padding:8px 16px calc(90px + env(safe-area-inset-bottom))}
+.sheet.on{transform:translateY(0)}
+.grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:6px auto 12px}
+.s-title{font-size:20px;font-weight:800;padding:0 2px 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px}
+.s-close{width:38px;height:38px;border-radius:50%;background:var(--surface2);
+  font-size:17px;color:var(--muted);flex:none;display:grid;place-items:center}
+.flash{animation:fl .6s ease}
+@keyframes fl{0%,100%{background:var(--surface2)}40%{background:#4A3A16}}
+label{display:block;font-size:13px;color:var(--muted);font-weight:600;
+  margin:14px 2px 6px;letter-spacing:.5px}
+input,textarea{width:100%;background:var(--surface2);border:1px solid var(--line);
+  border-radius:13px;padding:13px 14px;font-size:17px}
+input:focus,textarea:focus{outline:2px solid var(--amber);outline-offset:-2px}
+textarea{min-height:70px;resize:vertical}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.quick button{padding:8px 13px;border-radius:10px;background:var(--surface2);
+  font-size:14px;color:var(--amber);font-weight:600;border:1px solid var(--amber-soft)}
+.two{display:flex;gap:10px}.two>div{flex:1}
+.save{width:100%;margin-top:22px;padding:16px;border-radius:15px;background:var(--amber);
+  color:#17140E;font-size:18px;font-weight:800}
+.del{width:100%;margin-top:10px;padding:14px;border-radius:15px;
+  background:transparent;color:var(--red);font-size:15px;font-weight:600}
+.setrow{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:15px 2px;border-bottom:1px solid var(--line)}
+.setrow small{display:block;color:var(--muted);font-size:13px;font-weight:400;margin-top:2px}
+.setrow button{padding:9px 14px;border-radius:11px;background:var(--surface2);
+  font-size:14px;font-weight:600;flex:none;color:var(--amber)}
+
+/* ── toast ── */
+.toast{position:fixed;left:14px;right:14px;bottom:calc(146px + env(safe-area-inset-bottom));
+  background:#2E2818;border:1px solid var(--amber-soft);border-radius:15px;
+  padding:14px 16px;z-index:60;display:none;align-items:center;gap:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.toast.on{display:flex}
+.toast span{flex:1;font-size:15px}
+.toast button{background:var(--amber);color:#17140E;padding:9px 14px;
+  border-radius:11px;font-weight:700;font-size:14px;flex:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="h-date" id="hDate">—</div>
+    <div class="h-sub" id="hSub">—</div>
+  </div>
+  <button class="icon-btn" onclick="openSettings()" aria-label="設定">⚙</button>
+</header>
+
+<div id="meterWrap"></div>
+
+<div class="tabs">
+  <button class="tab on" data-tab="today">今天</button>
+  <button class="tab" data-tab="later">之後</button>
+  <button class="tab" data-tab="done">已完成</button>
+  <button class="tab" data-tab="money">收入</button>
+</div>
+
+<div class="list" id="list"></div>
+
+<button class="fab" onclick="openForm()">＋ 新增預約</button>
+
+<div class="scrim" id="scrim" onclick="closeSheets()"></div>
+
+<!-- 新增/編輯 -->
+<div class="sheet" id="sheetForm">
+  <div class="grab"></div>
+  <div class="s-title"><span id="fTitle">新增預約</span>
+    <button class="s-close" onclick="closeSheets()" aria-label="關閉">✕</button></div>
+  <label>上車時間</label>
+  <input type="datetime-local" id="f-time">
+  <div class="quick">
+    <button onclick="qt(30)">30分後</button>
+    <button onclick="qt(60)">1小時後</button>
+    <button onclick="qt(120)">2小時後</button>
+    <button onclick="qtm(1,7)">明早 7:00</button>
+    <button onclick="qtm(1,9)">明早 9:00</button>
+    <button onclick="qtm(1,18)">明晚 18:00</button>
+  </div>
+  <label>上車地點</label>
+  <input id="f-from" placeholder="例：台北車站東三門" autocomplete="off">
+  <label>目的地</label>
+  <input id="f-to" placeholder="例：桃園機場 第二航廈" autocomplete="off">
+  <div class="two">
+    <div><label>客人</label><input id="f-name" placeholder="王小姐" autocomplete="off"></div>
+    <div><label>電話</label><input id="f-phone" type="tel" placeholder="0912…" autocomplete="off"></div>
+  </div>
+  <label>車資（預估，可空白）</label>
+  <input id="f-fare" type="tel" inputmode="numeric" placeholder="1200">
+  <label>備註</label>
+  <textarea id="f-note" placeholder="3大2小、有行李、到門口打電話…"></textarea>
+  <button class="save" onclick="saveBooking()">存檔</button>
+  <button class="del" id="fDel" style="display:none" onclick="deleteBooking()">刪除這筆</button>
+</div>
+
+<!-- 設定 -->
+<div class="sheet" id="sheetSet">
+  <div class="grab"></div>
+  <div class="s-title"><span>設定</span>
+    <button class="s-close" onclick="closeSheets()" aria-label="關閉">✕</button></div>
+  <div class="setrow">
+    <div><b>手機提醒</b><small id="notiState">開啟後，App 有開著時會提前 30 分鐘提醒</small></div>
+    <button onclick="askNoti()">開啟</button>
+  </div>
+  <div class="setrow">
+    <div><b>提醒加到哪裡</b><small id="calModeTxt">目前：手機行事曆</small></div>
+    <button onclick="toggleCal()">切換</button>
+  </div>
+  <div class="setrow">
+    <div><b>全部加入手機行事曆</b><small>最保險：讓手機自己響鬧鐘，不用開這個 App</small></div>
+    <button onclick="icsAll()">匯出</button>
+  </div>
+  <div class="setrow">
+    <div><b>跳表費率</b><small id="rateTxt">—</small></div>
+    <button onclick="openRate()">修改</button>
+  </div>
+  <div class="setrow">
+    <div><b>匯出收支明細</b><small>CSV 檔，可用 Excel 打開對帳</small></div>
+    <button onclick="csv()">匯出</button>
+  </div>
+  <div class="setrow">
+    <div><b>備份資料</b><small>存成檔案，換手機或誤刪可還原</small></div>
+    <button onclick="backup()">下載</button>
+  </div>
+  <div class="setrow">
+    <div><b>還原備份</b><small>選擇之前下載的備份檔</small></div>
+    <button onclick="document.getElementById('restoreFile').click()">選檔案</button>
+  </div>
+  <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restore(event)">
+  <div class="setrow" style="border-bottom:0">
+    <div><b>清空已完成</b><small>刪掉 30 天前已完成的紀錄</small></div>
+    <button onclick="clearOld()" style="color:var(--red)">清除</button>
+  </div>
+</div>
+
+<!-- 結帳 -->
+<div class="sheet" id="sheetPay">
+  <div class="grab"></div>
+  <div class="s-title"><span>收車結帳</span>
+    <button class="s-close" onclick="closeSheets()" aria-label="關閉">✕</button></div>
+  <div id="payWho" style="color:var(--muted);font-size:15px;padding:0 2px 4px"></div>
+  <label>實收車資</label>
+  <input id="p-amt" type="tel" inputmode="numeric" class="amt" placeholder="0">
+  <button class="save" onclick="payDone()">收錢完成</button>
+  <button class="del" style="color:var(--muted)" onclick="payDone(true)">不記帳，只標記完成</button>
+</div>
+
+<!-- 記一筆 -->
+<div class="sheet" id="sheetLed">
+  <div class="grab"></div>
+  <div class="s-title"><span id="ledTitle">記一筆</span>
+    <button class="s-close" onclick="closeSheets()" aria-label="關閉">✕</button></div>
+  <label>金額</label>
+  <input id="l-amt" type="tel" inputmode="numeric" class="amt" placeholder="0">
+  <label>類別</label>
+  <div class="cats" id="l-cats"></div>
+  <label>日期</label>
+  <input id="l-date" type="date">
+  <label>備註</label>
+  <input id="l-note" placeholder="可空白">
+  <button class="save" onclick="saveLed()">記下來</button>
+</div>
+
+<!-- 跳表試算 -->
+<div class="sheet" id="sheetFare">
+  <div class="grab"></div>
+  <div class="s-title"><span>跳表試算</span>
+    <button class="s-close" onclick="closeSheets()" aria-label="關閉">✕</button></div>
+  <label>里程（公里）</label>
+  <input id="k-km" type="tel" inputmode="decimal" class="amt" placeholder="0" oninput="calcFare()">
+  <label>塞車／等待（分鐘，可空白）</label>
+  <input id="k-wait" type="tel" inputmode="numeric" placeholder="0" oninput="calcFare()">
+  <div class="togs">
+    <button id="k-night" onclick="tog('night')">夜間 23–06</button>
+    <button id="k-extra" onclick="tog('extra')">機場／春節</button>
+  </div>
+  <div class="fare-out"><div class="n" id="k-out">$0</div><div class="d" id="k-desc">輸入里程</div></div>
+  <button class="save" onclick="fareToLedger()">記為收入</button>
+</div>
+
+<!-- 費率設定 -->
+<div class="sheet" id="sheetRate">
+  <div class="grab"></div>
+  <div class="s-title"><span>跳表費率</span>
+    <button class="s-close" onclick="closeSheets()" aria-label="關閉">✕</button></div>
+  <div class="rate-grid">
+    <div><label>起程幾公里</label><input id="r-basekm" type="tel" inputmode="decimal"></div>
+    <div><label>起跳價</label><input id="r-base" type="tel" inputmode="numeric"></div>
+  </div>
+  <div class="rate-grid">
+    <div><label>續程每幾公尺</label><input id="r-unitm" type="tel" inputmode="numeric"></div>
+    <div><label>加收</label><input id="r-unitfee" type="tel" inputmode="numeric"></div>
+  </div>
+  <div class="rate-grid">
+    <div><label>延滯每幾秒</label><input id="r-waits" type="tel" inputmode="numeric"></div>
+    <div><label>加收</label><input id="r-waitfee" type="tel" inputmode="numeric"></div>
+  </div>
+  <div class="rate-grid">
+    <div><label>夜間加成 %</label><input id="r-night" type="tel" inputmode="numeric"></div>
+    <div><label>機場／春節加收</label><input id="r-extra" type="tel" inputmode="numeric"></div>
+  </div>
+  <button class="save" onclick="saveRate()">存費率</button>
+</div>
+
+<div class="toast" id="toast"><span id="toastMsg"></span><button id="toastBtn"></button></div>
+
+<script>
+/* ───────── 資料層（localStorage，失敗時退回記憶體）───────── */
+var KEY='taxi_bookings_v1', mem=[], memOnly=false;
+function load(){
+  if(memOnly) return mem;
+  try{ mem=JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ memOnly=true; }
+  return mem;
+}
+function save(a){
+  mem=a;
+  try{ localStorage.setItem(KEY,JSON.stringify(a)); }catch(e){ memOnly=true; }
+}
+
+var LKEY='taxi_ledger_v1', lmem=[];
+function loadL(){
+  if(memOnly) return lmem;
+  try{ lmem=JSON.parse(localStorage.getItem(LKEY)||'[]'); }catch(e){ memOnly=true; }
+  return lmem;
+}
+function saveL(a){
+  lmem=a;
+  try{ localStorage.setItem(LKEY,JSON.stringify(a)); }catch(e){ memOnly=true; }
+}
+
+/* ───────── 工具 ───────── */
+var WD=['日','一','二','三','四','五','六'];
+function pad(n){return n<10?'0'+n:''+n}
+function toLocal(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes())}
+function parseT(s){var p=s.split(/[-T:]/);return new Date(+p[0],+p[1]-1,+p[2],+p[3],+p[4])}
+function dayKey(s){return s.slice(0,10)}
+function todayKey(){return toLocal(new Date()).slice(0,10)}
+function fmtDay(k){
+  var p=k.split('-'), d=new Date(+p[0],+p[1]-1,+p[2]);
+  var t=todayKey(), tm=toLocal(new Date(Date.now()+864e5)).slice(0,10);
+  var label = k===t?'今天':(k===tm?'明天':'');
+  return (+p[1])+'月'+(+p[2])+'日 週'+WD[d.getDay()]+(label?' · '+label:'');
+}
+function left(ms){
+  var m=Math.round(ms/60000);
+  if(m<0){var a=-m; return a<60?('已過 '+a+' 分'):('已過 '+Math.floor(a/60)+' 小時');}
+  if(m<60) return '剩 '+m+' 分';
+  var h=Math.floor(m/60), mm=m%60;
+  if(h<24) return '剩 '+h+' 小時'+(mm?' '+mm+' 分':'');
+  return '剩 '+Math.floor(h/24)+' 天';
+}
+function bigCount(ms){
+  if(ms<0) return '已過時間';
+  var s=Math.floor(ms/1000), d=Math.floor(s/86400);
+  if(d>=1) return d+' 天 '+Math.floor(s%86400/3600)+' 小時';
+  return pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60);
+}
+function nt(n){return (n<0?'-':'')+'$'+Math.abs(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+function weekStart(){var d=new Date();var w=(d.getDay()+6)%7;d.setDate(d.getDate()-w);d.setHours(0,0,0,0);return toLocal(d).slice(0,10)}
+function monthStart(){var d=new Date();return toLocal(d).slice(0,7)}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+/* ───────── 畫面 ───────── */
+var tab='today', editId=null;
+
+function render(){
+  var all=load().slice().sort(function(a,b){return a.time<b.time?-1:1});
+  var now=new Date(), nowS=toLocal(now);
+
+  var d=new Date();
+  document.getElementById('hDate').textContent=(d.getMonth()+1)+'月'+d.getDate()+'日 週'+WD[d.getDay()];
+  var todo=all.filter(function(b){return b.status==='pending'&&dayKey(b.time)===todayKey()});
+  var tIn=loadL().filter(function(x){return dayKey(x.time)===todayKey()&&x.kind==='in'})
+                 .reduce(function(a,b){return a+b.amount},0);
+  document.getElementById('hSub').innerHTML=
+    (todo.length? ('今天還有 <b>'+todo.length+'</b> 趟') : '今天沒有預約')
+    + (tIn? ' · 已收 <b>'+nt(tIn)+'</b>' : '');
+
+  /* 下一趟 */
+  var next=all.filter(function(b){return b.status==='pending'&&b.time>=nowS})[0];
+  var mw=document.getElementById('meterWrap');
+  if(next){
+    var ms=parseT(next.time)-now, soon=ms<30*60000;
+    mw.innerHTML=
+     '<div class="meter'+(soon?' soon':'')+'">'
+     +'<div class="meter-top"><i class="dot"></i>下一趟</div>'
+     +'<div class="meter-count" id="bigC">'+bigCount(ms)+'</div>'
+     +'<div class="meter-route">'+esc(next.from||'—')+'<span style="color:var(--muted)"> → </span>'+esc(next.to||'—')+'</div>'
+     +'<div class="meter-when">'+fmtDay(dayKey(next.time))+' '+next.time.slice(11)+(next.name?' · '+esc(next.name):'')+'</div>'
+     +'<div class="meter-acts">'
+       +(next.phone?'<button onclick="call(\''+next.phone+'\')">📞 撥號</button>':'')
+       +'<button onclick="nav('+q(next.to)+')">🧭 導航</button>'
+       +'<button onclick="done(\''+next.id+'\')">✓ 完成</button>'
+     +'</div></div>';
+  } else {
+    mw.innerHTML='<div class="empty-meter">目前沒有待跑的預約<br><span style="font-size:14px">按右下角新增</span></div>';
+  }
+
+  if(tab==='money'){ mw.innerHTML=''; renderMoney(); return; }
+
+  /* 清單 */
+  var items;
+  if(tab==='done') items=all.filter(function(b){return b.status!=='pending'}).reverse();
+  else if(tab==='today') items=all.filter(function(b){return b.status==='pending'&&dayKey(b.time)<=todayKey()});
+  else items=all.filter(function(b){return b.status==='pending'&&dayKey(b.time)>todayKey()});
+
+  var html='', lastDay='';
+  items.forEach(function(b){
+    var k=dayKey(b.time);
+    if(k!==lastDay){ html+='<div class="daygroup">'+fmtDay(k)+'</div>'; lastDay=k; }
+    var late=b.status==='pending'&&b.time<nowS;
+    html+='<div class="card'+(late?' late':'')+(b.status!=='pending'?' done':'')+'">'
+      +'<div class="c-row1"><div class="c-time">'+b.time.slice(11)+'</div>'
+      +'<div class="c-left">'+(b.status==='pending'?left(parseT(b.time)-now):(b.status==='done'?'已完成':'已取消'))+'</div>'
+      +(b.fare?'<div class="c-tag">$'+esc(b.fare)+'</div>':'')+'</div>'
+      +'<div class="c-route">'+esc(b.from||'—')+'<span class="arw">→</span>'+esc(b.to||'—')+'</div>'
+      +((b.name||b.phone)?'<div class="c-meta">'+esc(b.name||'')+(b.phone?' · '+esc(b.phone):'')+'</div>':'')
+      +(b.note?'<div class="c-note">'+esc(b.note)+'</div>':'')
+      +'<div class="c-acts">'
+        +(b.status==='pending'
+          ? (b.phone?'<button class="chip" onclick="call(\''+b.phone+'\')">📞 撥號</button>':'')
+            +'<button class="chip" onclick="nav('+q(b.to)+')">🧭 導航</button>'
+            +'<button class="chip" onclick="ics(\''+b.id+'\')">🔔 加行事曆</button>'
+            +'<button class="chip pri" onclick="done(\''+b.id+'\')">✓ 完成</button>'
+            +'<button class="chip mut" onclick="openForm(\''+b.id+'\')">修改</button>'
+          : '<button class="chip ok" onclick="again(\''+b.id+'\')">↻ 再訂一次</button>'
+            +'<button class="chip mut" onclick="openForm(\''+b.id+'\')">查看</button>')
+      +'</div></div>';
+  });
+  document.getElementById('list').innerHTML = html ||
+    '<div class="empty">'+(tab==='done'?'還沒有完成紀錄':'這裡沒有預約')+'</div>';
+}
+function q(s){return esc(JSON.stringify(s||''))}
+
+function renderMoney(){
+  var L=loadL(), t=todayKey(), ws=weekStart(), ms=monthStart();
+  function sum(f,k){return L.filter(function(x){return f(x)&&x.kind===k})
+    .reduce(function(a,b){return a+b.amount},0)}
+  var isT=function(x){return dayKey(x.time)===t},
+      isW=function(x){return dayKey(x.time)>=ws},
+      isM=function(x){return x.time.slice(0,7)===ms};
+  var tin=sum(isT,'in'), tout=sum(isT,'out');
+
+  /* 近 7 天 */
+  var days=[], max=1;
+  for(var i=6;i>=0;i--){
+    var d=new Date(); d.setDate(d.getDate()-i);
+    var k=toLocal(d).slice(0,10);
+    var n=L.filter(function(x){return dayKey(x.time)===k&&x.kind==='in'})
+           .reduce(function(a,b){return a+b.amount},0);
+    if(n>max) max=n;
+    days.push({k:k,n:n,lb:WD[d.getDay()],now:i===0});
+  }
+  var bars=days.map(function(d){
+    return '<div class="bar'+(d.now?' now':'')+'"><i style="height:'
+      +Math.max(3,Math.round(d.n/max*88))+'px"></i><span>'+d.lb+'</span></div>';
+  }).join('');
+
+  var today=L.filter(isT).sort(function(a,b){return a.time<b.time?1:-1});
+  var rows=today.map(function(x){
+    return '<div class="led"><div class="t">'+x.time.slice(11)+'</div>'
+      +'<div class="c">'+esc(x.cat)+(x.note?' <em>'+esc(x.note)+'</em>':'')+'</div>'
+      +'<div class="a '+x.kind+'">'+(x.kind==='in'?'+':'−')+nt(x.amount).slice(1)+'</div>'
+      +'<button class="x" onclick="delLed(\''+x.id+'\')">✕</button></div>';
+  }).join('');
+
+  document.getElementById('list').innerHTML=
+    '<div class="money-hero"><div class="mh-label">今日淨收入</div>'
+    +'<div class="mh-net" style="color:'+(tin-tout>=0?'var(--amber)':'var(--red)')+'">'
+      +nt(tin-tout)+'</div>'
+    +'<div class="mh-split"><div>收入 <b>'+nt(tin)+'</b></div>'
+      +'<div class="out">支出 <b>'+nt(tout)+'</b></div></div>'
+    +'<div class="bars">'+bars+'</div></div>'
+    +'<div class="mcards">'
+      +'<div class="mcard"><small>本週</small><b>'+nt(sum(isW,'in')-sum(isW,'out'))+'</b></div>'
+      +'<div class="mcard"><small>本月</small><b>'+nt(sum(isM,'in')-sum(isM,'out'))+'</b></div>'
+    +'</div>'
+    +'<div class="mbtns"><button class="in" onclick="openLed(\'in\')">＋ 收入</button>'
+      +'<button class="out" onclick="openLed(\'out\')">－ 支出</button>'
+      +'<button class="meterbtn" onclick="openFare()">跳表試算</button></div>'
+    +'<div class="daygroup">今天明細</div>'
+    +(rows||'<div class="empty">今天還沒有紀錄</div>');
+}
+
+/* ───────── 跳表試算 ───────── */
+var DEF={basekm:1.25,base:85,unitm:200,unitfee:5,waits:100,waitfee:5,night:20,extra:50};
+function rate(){
+  try{ return Object.assign({},DEF,JSON.parse(localStorage.getItem('taxi_rate_v1')||'{}')); }
+  catch(e){ return Object.assign({},DEF); }
+}
+var fareTog={night:false,extra:false};
+function openFare(){
+  var h=new Date().getHours();
+  fareTog={night:(h>=23||h<6),extra:false};
+  val('k-km',''); val('k-wait','');
+  drawTog(); calcFare();
+  show(document.getElementById('sheetFare'));
+}
+function tog(k){fareTog[k]=!fareTog[k];drawTog();calcFare()}
+function drawTog(){
+  document.getElementById('k-night').className=fareTog.night?'on':'';
+  document.getElementById('k-extra').className=fareTog.extra?'on':'';
+}
+function num(id){var v=parseFloat(g(id).replace(/[^0-9.]/g,''));return isNaN(v)?0:v}
+function calcFare(){
+  var r=rate(), km=num('k-km'), wait=num('k-wait')*60;
+  var run=r.base;
+  if(km>r.basekm) run+=Math.ceil((km-r.basekm)*1000/r.unitm)*r.unitfee;
+  var dly=Math.floor(wait/r.waits)*r.waitfee;
+  var sub=run+dly, total=sub;
+  if(fareTog.night) total=sub*(1+r.night/100);
+  total=Math.round(total/5)*5;
+  if(fareTog.extra) total+=r.extra;
+  var d=[km?km+' 公里':'', dly?('延滯 '+dly+' 元'):'',
+         fareTog.night?('夜間 +'+r.night+'%'):'', fareTog.extra?('加成 +'+r.extra):''].filter(Boolean);
+  document.getElementById('k-out').textContent=nt(km?total:0);
+  document.getElementById('k-desc').textContent=d.length?d.join('　'):'輸入里程';
+  return km?total:0;
+}
+function fareToLedger(){
+  var t=calcFare();
+  if(!t){toast('請先輸入里程');return;}
+  closeSheets();
+  openLed('in',String(t),'跳表');
+}
+function openRate(){
+  var r=rate();
+  val('r-basekm',r.basekm); val('r-base',r.base);
+  val('r-unitm',r.unitm);   val('r-unitfee',r.unitfee);
+  val('r-waits',r.waits);   val('r-waitfee',r.waitfee);
+  val('r-night',r.night);   val('r-extra',r.extra);
+  show(document.getElementById('sheetRate'));
+}
+function saveRate(){
+  var r={basekm:num('r-basekm')||DEF.basekm, base:num('r-base')||DEF.base,
+         unitm:num('r-unitm')||DEF.unitm,   unitfee:num('r-unitfee')||DEF.unitfee,
+         waits:num('r-waits')||DEF.waits,   waitfee:num('r-waitfee')||DEF.waitfee,
+         night:num('r-night'),              extra:num('r-extra')};
+  try{localStorage.setItem('taxi_rate_v1',JSON.stringify(r))}catch(e){}
+  closeSheets(); toast('費率已更新');
+}
+
+/* ───────── 記帳 ───────── */
+var CAT={in:['跳表','預約','小費','其他'],out:['加油','停車','洗車','修車','其他']};
+var ledKind='in', ledCat='跳表';
+function openLed(kind,amt,cat,d){
+  ledKind=kind; ledCat=cat||CAT[kind][0];
+  document.getElementById('ledTitle').textContent=kind==='in'?'記一筆收入':'記一筆支出';
+  val('l-amt',amt||''); val('l-note','');
+  val('l-date',d||todayKey());
+  drawCats();
+  show(document.getElementById('sheetLed'));
+  var a=document.getElementById('l-amt');
+  try{ a.focus(); a.click(); }catch(e){}
+}
+function drawCats(){
+  document.getElementById('l-cats').innerHTML=CAT[ledKind].map(function(c){
+    return '<button class="'+(c===ledCat?'on':'')+'" onclick="pickCat('+q(c)+')">'+esc(c)+'</button>';
+  }).join('');
+}
+function pickCat(c){ledCat=c;drawCats()}
+function saveLed(){
+  var n=parseInt(g('l-amt').replace(/[^0-9]/g,''),10);
+  if(!n||n<=0){toast('請輸入金額');return;}
+  var d=g('l-date')||todayKey();
+  var now=new Date(), hm=(d===todayKey())?toLocal(now).slice(11):'12:00';
+  var L=loadL();
+  L.push({id:'l'+Date.now(),time:d+'T'+hm,amount:n,kind:ledKind,cat:ledCat,note:g('l-note')});
+  saveL(L); closeSheets(); render();
+  toast((ledKind==='in'?'收入 +':'支出 −')+n+' 已記下');
+}
+function delLed(id){
+  if(!confirm('刪除這筆紀錄？'))return;
+  saveL(loadL().filter(function(x){return x.id!==id})); render();
+}
+function csv(){
+  var L=loadL().slice().sort(function(a,b){return a.time<b.time?-1:1});
+  if(!L.length){toast('還沒有任何紀錄');return;}
+  var rows=[['日期','時間','收支','類別','金額','備註']].concat(L.map(function(x){
+    return [x.time.slice(0,10),x.time.slice(11),x.kind==='in'?'收入':'支出',x.cat,x.amount,(x.note||'')];
+  }));
+  var t='\ufeff'+rows.map(function(r){
+    return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"'}).join(',');
+  }).join('\r\n');
+  dl(new Blob([t],{type:'text/csv;charset=utf-8'}),'收支明細_'+todayKey()+'.csv');
+  toast('已匯出 '+L.length+' 筆');
+}
+
+/* 每秒更新倒數 */
+setInterval(function(){
+  var el=document.getElementById('bigC');
+  if(!el) return;
+  var all=load().filter(function(b){return b.status==='pending'&&b.time>=toLocal(new Date())})
+                .sort(function(a,b){return a.time<b.time?-1:1});
+  if(!all[0]){render();return;}
+  var ms=parseT(all[0].time)-new Date();
+  el.textContent=bigCount(ms);
+  var m=el.closest('.meter');
+  if(ms<30*60000) m.classList.add('soon'); else m.classList.remove('soon');
+  checkNoti();
+},1000);
+
+/* ───────── 動作 ───────── */
+function call(p){location.href='tel:'+p.replace(/[^0-9+]/g,'')}
+function nav(t){ if(!t){toast('這筆沒有填目的地');return;}
+  window.open('https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(t),'_blank'); }
+var payId=null;
+function done(id){
+  var b=load().filter(function(x){return x.id===id})[0]; if(!b)return;
+  payId=id;
+  document.getElementById('payWho').textContent=
+    (b.from||'')+(b.to?' → '+b.to:'')+(b.name?'（'+b.name+'）':'');
+  val('p-amt', b.fare||'');
+  show(document.getElementById('sheetPay'));
+  var e=document.getElementById('p-amt');
+  try{ e.focus(); e.click(); }catch(err){}
+}
+function payDone(skip){
+  var a=load(); a.forEach(function(b){if(b.id===payId)b.status='done'}); save(a);
+  if(!skip){
+    var n=parseInt(g('p-amt').replace(/[^0-9]/g,''),10);
+    if(n>0){
+      var L=loadL();
+      L.push({id:'l'+Date.now(),time:toLocal(new Date()),amount:n,kind:'in',
+              cat:'預約',note:document.getElementById('payWho').textContent.slice(0,40)});
+      saveL(L);
+      closeSheets(); payId=null; render(); toast('完成，收入 +'+n);
+      return;
+    }
+  }
+  closeSheets(); payId=null; render(); toast('已標記完成');
+}
+function again(id){
+  var b=load().filter(function(x){return x.id===id})[0]; if(!b)return;
+  openForm(null,{from:b.from,to:b.to,name:b.name,phone:b.phone,fare:b.fare,note:b.note});
+}
+
+/* ───────── 表單 ───────── */
+function openForm(id,pre){
+  editId=id||null;
+  var f=document.getElementById('sheetForm');
+  document.getElementById('fTitle').textContent=id?'修改預約':'新增預約';
+  document.getElementById('fDel').style.display=id?'block':'none';
+  var b = id ? load().filter(function(x){return x.id===id})[0] : (pre||{});
+  var t=new Date(Date.now()+3600000); t.setMinutes(Math.ceil(t.getMinutes()/10)*10,0,0);
+  val('f-time', b.time||toLocal(t));
+  val('f-from',b.from||''); val('f-to',b.to||''); val('f-name',b.name||'');
+  val('f-phone',b.phone||''); val('f-fare',b.fare||''); val('f-note',b.note||'');
+  show(f);
+}
+function val(id,v){document.getElementById(id).value=v}
+function g(id){return document.getElementById(id).value.trim()}
+function setT(t){
+  val('f-time',toLocal(t));
+  var el=document.getElementById('f-time');
+  el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+  toast('上車時間：'+(t.getMonth()+1)+'/'+t.getDate()+' '+pad(t.getHours())+':'+pad(t.getMinutes()));
+}
+function qt(min){var t=new Date(Date.now()+min*60000);t.setSeconds(0,0);setT(t)}
+function qtm(dayOffset,hour){
+  var t=new Date(); t.setDate(t.getDate()+dayOffset); t.setHours(hour,0,0,0); setT(t);
+}
+function saveBooking(){
+  var time=g('f-time');
+  if(!time){toast('請先選上車時間');return;}
+  if(!g('f-from')&&!g('f-to')){toast('至少填上車地點或目的地');return;}
+  var a=load();
+  var rec={id:editId||('b'+Date.now()), time:time.slice(0,16),
+    from:g('f-from'), to:g('f-to'), name:g('f-name'), phone:g('f-phone'),
+    fare:g('f-fare'), note:g('f-note'), notified:{}};
+  if(editId){ a=a.map(function(x){return x.id===editId?Object.assign(x,rec):x}); }
+  else { rec.status='pending'; a.push(rec); }
+  save(a); closeSheets();
+  tab = dayKey(rec.time)>todayKey() ? 'later' : 'today';
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.tab===tab)});
+  render();
+  toast('已存檔 · 建議也加進行事曆','加入行事曆',function(){ics(rec.id)});
+}
+function deleteBooking(){
+  if(!editId)return;
+  if(!confirm('確定刪除這筆預約？'))return;
+  save(load().filter(function(x){return x.id!==editId}));
+  closeSheets(); render(); toast('已刪除');
+}
+
+/* ───────── 行事曆 .ics ───────── */
+function icsEsc(s){return (s||'').replace(/\\/g,'\\\\').replace(/([,;])/g,'\\$1').replace(/\n/g,'\\n')}
+function stamp(d){return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z'}
+function vevent(b){
+  var dt=b.time.replace(/[-:]/g,'')+'00';
+  var title='🚕 '+(b.from||'')+(b.to?' → '+b.to:'')+(b.name?'（'+b.name+'）':'');
+  var desc=[b.name?'客人：'+b.name:'', b.phone?'電話：'+b.phone:'',
+            b.fare?'車資：'+b.fare:'', b.note?'備註：'+b.note:''].filter(Boolean).join('\n');
+  return ['BEGIN:VEVENT','UID:'+b.id+'@taxi.local','DTSTAMP:'+stamp(new Date()),
+    'DTSTART:'+dt,'DURATION:PT40M','SUMMARY:'+icsEsc(title),
+    'LOCATION:'+icsEsc(b.from||''),'DESCRIPTION:'+icsEsc(desc),
+    'BEGIN:VALARM','TRIGGER:-PT30M','ACTION:DISPLAY','DESCRIPTION:'+icsEsc('30分鐘後有預約：'+title),'END:VALARM',
+    'BEGIN:VALARM','TRIGGER:-PT10M','ACTION:DISPLAY','DESCRIPTION:'+icsEsc('10分鐘後有預約：'+title),'END:VALARM',
+    'END:VEVENT'].join('\r\n');
+}
+function icsFile(list,name){
+  var s=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//taxi-booking//TW','CALSCALE:GREGORIAN']
+    .concat(list.map(vevent)).concat(['END:VCALENDAR']).join('\r\n');
+  dl(new Blob([s],{type:'text/calendar;charset=utf-8'}), name);
+}
+function calMode(){try{return localStorage.getItem('cal_mode')||'ics'}catch(e){return 'ics'}}
+function toggleCal(){
+  var m=calMode()==='ics'?'gcal':'ics';
+  try{localStorage.setItem('cal_mode',m)}catch(e){}
+  document.getElementById('calModeTxt').textContent='目前：'+(m==='ics'?'手機行事曆':'Google 日曆');
+  toast('提醒改加到 '+(m==='ics'?'手機行事曆':'Google 日曆'));
+}
+function utc(s){var d=parseT(s);return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z'}
+function gcal(b){
+  var end=new Date(parseT(b.time).getTime()+40*60000);
+  var t='🚕 '+(b.from||'')+(b.to?' → '+b.to:'')+(b.name?'（'+b.name+'）':'');
+  var d=[b.name?'客人：'+b.name:'',b.phone?'電話：'+b.phone:'',b.fare?'車資：'+b.fare:'',b.note?'備註：'+b.note:''].filter(Boolean).join('\n');
+  var u='https://calendar.google.com/calendar/render?action=TEMPLATE'
+    +'&text='+encodeURIComponent(t)
+    +'&dates='+utc(b.time)+'/'+utc(toLocal(end))
+    +'&details='+encodeURIComponent(d)
+    +'&location='+encodeURIComponent(b.from||'')
+    +'&ctz=Asia/Taipei';
+  window.open(u,'_blank');
+}
+function ics(id){
+  var b=load().filter(function(x){return x.id===id})[0]; if(!b)return;
+  if(calMode()==='gcal'){ gcal(b); toast('在 Google 日曆按「儲存」即可'); return; }
+  icsFile([b],'預約_'+b.time.replace(/[-:T]/g,'')+'.ics');
+  toast('點開下載的檔案，再按「加入行事曆」');
+}
+function icsAll(){
+  var l=load().filter(function(b){return b.status==='pending'});
+  if(!l.length){toast('沒有待跑的預約');return;}
+  icsFile(l,'全部預約.ics'); toast('已匯出 '+l.length+' 筆');
+}
+function dl(blob,name){
+  var u=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=u; a.download=name; document.body.appendChild(a); a.click();
+  setTimeout(function(){URL.revokeObjectURL(u);a.remove()},2000);
+}
+
+/* ───────── 備份 ───────── */
+function backup(){
+  dl(new Blob([JSON.stringify({bookings:load(),ledger:loadL()})],{type:'application/json'}),
+     '備份_'+todayKey()+'.json');
+  toast('備份已下載');
+}
+function restore(e){
+  var f=e.target.files[0]; if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      var d=JSON.parse(r.result);
+      var bk=Array.isArray(d)?d:(d.bookings||[]), lg=Array.isArray(d)?[]:(d.ledger||[]);
+      var cur=load(), ids={}; cur.forEach(function(b){ids[b.id]=1});
+      bk.forEach(function(b){ if(!ids[b.id]) cur.push(b) });
+      save(cur);
+      var cl=loadL(), lid={}; cl.forEach(function(x){lid[x.id]=1});
+      lg.forEach(function(x){ if(!lid[x.id]) cl.push(x) });
+      saveL(cl);
+      render(); closeSheets(); toast('已還原 '+(bk.length+lg.length)+' 筆');
+    }catch(err){ toast('這個檔案讀不了，請選備份的 .json'); }
+  };
+  r.readAsText(f); e.target.value='';
+}
+function clearOld(){
+  var cut=toLocal(new Date(Date.now()-30*864e5));
+  var a=load(), n=a.length;
+  a=a.filter(function(b){return b.status==='pending'||b.time>cut});
+  save(a); render(); toast('清除了 '+(n-a.length)+' 筆');
+}
+
+/* ───────── 通知（App 開著時）───────── */
+function askNoti(){
+  if(!('Notification' in window)){toast('這台手機的瀏覽器不支援，請用行事曆提醒');return;}
+  Notification.requestPermission().then(function(p){
+    document.getElementById('notiState').textContent =
+      p==='granted' ? '已開啟。注意：App 完全關掉時不會響，行事曆才會。' : '未允許，請到手機設定開啟通知';
+    toast(p==='granted'?'提醒已開啟':'未開啟通知權限');
+  });
+}
+function checkNoti(){
+  if(!('Notification' in window)||Notification.permission!=='granted')return;
+  var a=load(), now=Date.now(), changed=false;
+  a.forEach(function(b){
+    if(b.status!=='pending')return;
+    b.notified=b.notified||{};
+    var m=(parseT(b.time)-now)/60000;
+    [[30,'30'],[10,'10']].forEach(function(x){
+      if(m<=x[0]&&m>x[0]-1.2&&!b.notified[x[1]]){
+        b.notified[x[1]]=1; changed=true;
+        new Notification('還有 '+x[0]+' 分鐘有預約',{body:(b.from||'')+' → '+(b.to||'')+(b.name?'（'+b.name+'）':''),tag:b.id+x[1]});
+      }
+    });
+  });
+  if(changed) save(a);
+}
+
+/* ───────── UI 小工具 ───────── */
+function show(el){document.getElementById('scrim').classList.add('on');el.classList.add('on')}
+function closeSheets(){
+  document.getElementById('scrim').classList.remove('on');
+  document.querySelectorAll('.sheet').forEach(function(s){s.classList.remove('on')});
+}
+function openSettings(){
+  var r=rate();
+  document.getElementById('rateTxt').textContent=
+    '起程 '+r.basekm+'km '+r.base+'元，續程每 '+r.unitm+'m '+r.unitfee+'元';
+  document.getElementById('calModeTxt').textContent='目前：'+(calMode()==='ics'?'手機行事曆':'Google 日曆');
+  show(document.getElementById('sheetSet'));
+}
+var tTimer;
+function toast(msg,btn,fn){
+  var t=document.getElementById('toast'), b=document.getElementById('toastBtn');
+  document.getElementById('toastMsg').textContent=msg;
+  if(btn){b.style.display='';b.textContent=btn;b.onclick=function(){fn();hideToast()}}
+  else b.style.display='none';
+  t.classList.add('on'); clearTimeout(tTimer); tTimer=setTimeout(hideToast,btn?7000:2600);
+}
+function hideToast(){document.getElementById('toast').classList.remove('on')}
+document.querySelectorAll('.tab').forEach(function(t){
+  t.onclick=function(){
+    tab=t.dataset.tab;
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    t.classList.add('on'); render();
+  };
+});
+render();
+</script>
+</body>
+</html>
